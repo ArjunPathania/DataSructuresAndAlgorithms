@@ -24,15 +24,15 @@ public:
         // return ans;
 
         // using a hashMap
-        unordered_map<int, int> numMap;
+        unordered_map<int, int> numMap;//here the first int stores the number and the second int stores the index
         for (int i = 0; i < nums.size(); i++)
         {
             int complement = target - nums[i];
             if (numMap.find(complement) != numMap.end())
             {
-                return {numMap[complement], i};
+                return {numMap[complement], i}; // 
             }
-            numMap[nums[i]] = i;
+            numMap[nums[i]] = i; // storing the index of the element
         }
         return {};
     }
