@@ -7,6 +7,7 @@ class Solution
 public:
     int findMin(vector<int> &nums)
     {
+        //brute force approach
         // int n = nums.size();
         // for (int i = 1; i <= n; i++)
         // {
