@@ -7,8 +7,11 @@ public:
 
     int mySqrt(int x)
     {
+        if(x==1){
+            return 1;
+        }
         long l = 0;
-        long h = x;
+        long h = x/2;
         long m;
         while (l <= h)
         {
