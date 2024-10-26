@@ -7,14 +7,26 @@ public:
     char repeatedCharacter(string s)
     {
         // hashHamp Based solution
-        unordered_map<char, int> seen;
+        // unordered_map<char, int> seen;
+        // for (auto i : s)
+        // {
+        //     seen[i]++;
+        //     if (seen[i] >= 2)
+        //     {
+        //         return i;
+        //     }
+        // }
+        // return -1;
+
+        //Using Sets :Using a set in this case is more efficient and concise for detecting a repeated character because it provides the necessary functionality (tracking seen characters) with less memory and potentially lower overhead.
+        unordered_set<char> seen;
         for (auto i : s)
         {
-            seen[i]++;
-            if (seen[i] >= 2)
+            if (seen.count(i))
             {
                 return i;
             }
+            seen.insert(i);
         }
         return -1;
     }
