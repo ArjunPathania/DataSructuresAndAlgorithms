@@ -1,8 +1,9 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
 // Solution class
-class Solution {
+class Solution
+{
 public:
     char repeatedCharacter(string s)
     {
@@ -18,32 +19,49 @@ public:
         // }
         // return -1;
 
-        //Using Sets :Using a set in this case is more efficient and concise for detecting a repeated character because it provides the necessary functionality (tracking seen characters) with less memory and potentially lower overhead.
-        unordered_set<char> seen;
-        for (auto i : s)
+        // Using Sets :Using a set in this case is more efficient and concise for detecting a repeated character because it provides the necessary functionality (tracking seen characters) with less memory and potentially lower overhead.
+        //  unordered_set<char> seen;
+        //  for (auto i : s)
+        //  {
+        //      if (seen.count(i))
+        //      {
+        //          return i;
+        //      }
+        //      seen.insert(i);
+        //  }
+        //  return -1;
+
+        // using bit wise operators and bit masking
+        int vector = 0;
+        for (auto c : s)
         {
-            if (seen.count(i))
+            if ((vector & (1 << (c - 'a'))) > 0)
             {
-                return i;
+                return c;
             }
-            seen.insert(i);
+
+            vector = vector | (1 << (c - 'a'));
         }
-        return -1;
+
+        return ' ';
     }
 };
 
-int main() {
+int main()
+{
     // Fast IO
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
 
     int T;
-   /* cout << "Enter number of test cases: ";*/
+    /* cout << "Enter number of test cases: ";*/
     cin >> T;
 
-    while (T--) {
+    while (T--)
+    {
         string str;
-        if (!(cin >> str)) {
+        if (!(cin >> str))
+        {
             cerr << "Insufficient inputs for the number of test cases specified." << endl;
             return 1; // Exit with error code
         }
