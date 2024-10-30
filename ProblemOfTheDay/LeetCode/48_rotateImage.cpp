@@ -34,31 +34,51 @@ public:
         //     }
         // }
         // matrix = ans;
-        
-        //four-way swap processing each layer
-        int n = matrix.size();
-        int row_start = 0, row_end = n - 1;
-        while (row_start < row_end) // Process layer by layer
-        {
-            int col_start = row_start;
-            int col_end = row_end;
-            while (col_start < col_end) // Process each element in the current layer
-            {
-                // Save the top element
-                int temp = matrix[row_start][col_start];
-                // Move left to top
-                matrix[row_start][col_start] = matrix[row_end - (col_start - row_start)][row_start];
-                // Move bottom to left
-                matrix[row_end - (col_start - row_start)][row_start] = matrix[row_end][col_end - (col_start - row_start)];
-                // Move right to bottom
-                matrix[row_end][col_end - (col_start - row_start)] = matrix[col_start][row_end];
-                // Move top to right
-                matrix[col_start][row_end] = temp;
-                col_start++; // Move to the next element in the layer
-            }
 
-            row_start++;
-            row_end--;
+        // four-way swap processing each layer
+        //  int n = matrix.size();
+        //  int row_start = 0, row_end = n - 1;
+        //  while (row_start < row_end) // Process layer by layer
+        //  {
+        //      int col_start = row_start;
+        //      int col_end = row_end;
+        //      while (col_start < col_end) // Process each element in the current layer
+        //      {
+        //          // Save the top element
+        //          int temp = matrix[row_start][col_start];
+        //          // Move left to top
+        //          matrix[row_start][col_start] = matrix[row_end - (col_start - row_start)][row_start];
+        //          // Move bottom to left
+        //          matrix[row_end - (col_start - row_start)][row_start] = matrix[row_end][col_end - (col_start - row_start)];
+        //          // Move right to bottom
+        //          matrix[row_end][col_end - (col_start - row_start)] = matrix[col_start][row_end];
+        //          // Move top to right
+        //          matrix[col_start][row_end] = temp;
+        //          col_start++; // Move to the next element in the layer
+        //      }
+
+        //     row_start++;
+        //     row_end--;
+        // }
+        int n = matrix.size();
+        int l = 0, r = n - 1;
+        while (l < r)
+        {
+            int top = l, bottom = r;
+            for (int i = 0; i < r - l; i++)
+            {
+                int topleft = matrix[top][l + i];
+
+                matrix[top][l + i] = matrix[bottom - i][l];
+
+                matrix[bottom - i][l] = matrix[bottom][r - i];
+
+                matrix[bottom][r - i] = matrix[top + i][r];
+
+                matrix[top + i][r] = topleft;
+            }
+            l += 1;
+            r -= 1;
         }
     };
 
