@@ -20,11 +20,12 @@ public:
         //     f = f * n;
         //     return result + p / f;
         // }
-        
+
+        // Horner's Rule
         static double s = 1;
         if (n == 0)
             return s;
-        s = 1 + (x * s) / n; // Correct Horner's Rule
+        s = 1 + (x * s) / n; 
         return e(x, n - 1);
     }
 
